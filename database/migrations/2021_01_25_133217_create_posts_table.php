@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('category', 50);
             $table->string('topic', 50)->nullable();
             $table->string('language', 50)->nullable();
+            $table->mediumText('text');
             $table->timestamps();
         });
     }
