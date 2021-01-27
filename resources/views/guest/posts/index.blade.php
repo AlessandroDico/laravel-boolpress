@@ -7,7 +7,11 @@
                 <h1>All posts</h1>
                 <ul>
                     @foreach ($posts as $post)
-                        <li>{{ $post->title }}</li>
+                        <li>
+                            <a href="{{ route('post.show', ['post'=>$post->id]) }}">
+                                {{ $post->title }}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
