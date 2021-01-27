@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -29,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -40,7 +41,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newPost = new Post();
+        $newPost->fill($data);
+
+        // genero lo slug come nelle seeder prendendo il titolo questa volta dal form (la "formula" per lo slug è identica)
+        $slug = Str::slug($newPost->title, '-');
+
+        $slugEditable = $slug;
+        $currentSlug = Post::where('slug', $slug)->first();
+        $contatore = 1;
+        while($currentSlug) {
+            $slug = $slugEditable . '-' . $contatore;
+            $contatore++;
+            $currentSlug = Post::where('slug', $slug)->first();
+        }
+
+        $newPost->slug = $slug;
+
+        $newPost->save();
+
+        return redirect()->route('admin.post.index');
     }
 
     /**
@@ -66,7 +88,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'ok';
     }
 
     /**

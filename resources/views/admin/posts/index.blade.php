@@ -3,10 +3,16 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="post-header-title col-6">
                 <h1>
                     All posts
                 </h1>
+            </div>
+            <div class="post-header-button col-6 d-flex flex-row-reverse">
+                <a href="{{ route('admin.post.create') }}">
+                    <button type="button" class="btn btn-success">Add new Post +</button>
+                </a>
+            </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -25,6 +31,9 @@
                                 <td>
                                     <a href="{{ route('admin.post.show', ['post'=>$post->id ]) }}">
                                         <button class="btn btn-primary">Show</button>
+                                    </a>
+                                    <a href="{{ route('admin.post.edit', ['post'=>$post->id ]) }}">
+                                        <button class="btn btn-info">Modify</button>
                                     </a>
                                 </td>
                             </tr>
