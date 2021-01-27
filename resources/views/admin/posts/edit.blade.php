@@ -19,6 +19,16 @@
                         value="{{ $post->subtitle }}">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Category</label>
+                        <select class="form-control" name="category_id">
+                            <option value="">-- seleziona --</option>
+                             @foreach ($categories as $category)
+                                 <option value="{{ $category->id }}"
+                                     {{ $category->id == $post->category_id ? "selected=selected" : '' }}>{{ $category->name }}</option>
+                             @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
                         <textarea name="text" rows="8" cols="80" placeholder="Enter Content" class="form-control">{{ $post->text }}</textarea>
                     </div>
