@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 Route::get('post', 'PostController@index')->name('post.index');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function() {

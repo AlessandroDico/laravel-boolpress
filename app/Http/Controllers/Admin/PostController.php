@@ -74,10 +74,15 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $data = [
-            'post' => $post,
-        ];
-        return view('admin.posts.show', $data);
+
+        if ($post) {
+            $data = [
+                'post' => $post,
+            ];
+            return view('admin.posts.show', $data);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -86,9 +91,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        return 'ok';
+        $data = [
+            'post' => $post
+        ];
+        return view('admin.posts.edit', $data);
     }
 
     /**
@@ -98,9 +106,30 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        // dd($data);
+
+        // se il titolo che arriva alla request è diverso al titolo che c'era in precedenza devo ricreare lo slug
+        if ($data['title'] != $post->title) {
+
+            $slug = Str::slug($data['title'], '-');
+
+            $slugEditable = $slug;
+            $currentSlug = Post::where('slug', $slug)->first();
+            $contatore = 1;
+            while($currentSlug) {
+                $slug = $slugEditable . '-' . $contatore;
+                $contatore++;
+                $currentSlug = Post::where('slug', $slug)->first();
+            }
+
+            $data['slug'] = $slug;
+        }
+        $post->update($data);
+
+        return redirect()->route('admin.post.index');
     }
 
     /**
