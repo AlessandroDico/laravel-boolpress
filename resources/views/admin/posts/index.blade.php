@@ -35,6 +35,12 @@
                                     <a href="{{ route('admin.post.edit', ['post'=>$post->id ]) }}">
                                         <button class="btn btn-info">Modify</button>
                                     </a>
+                                    <form class="d-inline"
+                                    action="{{ route('admin.post.destroy', ['post'=>$post->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
