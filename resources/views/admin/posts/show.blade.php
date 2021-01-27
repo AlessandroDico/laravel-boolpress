@@ -8,6 +8,8 @@
                 <h4>- {{ $post->title }}</h4>
                 <h2>Subtitle:</h2>
                 <h4>- {{ $post->subtitle ? $post->subtitle : '' }}</h4>
+                <h2>Category:</h2>
+                <h4>- {{ $post->category ? $post->category->name : 'n.d' }}</h4>
                 <h2>Post:</h2>
                 <h4>{{ $post->text }}</h4>
             </div>
