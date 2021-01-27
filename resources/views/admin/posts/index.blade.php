@@ -23,7 +23,7 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->author }}</td>
                                 <td>
-                                    <a href="#">
+                                    <a href="{{ route('admin.post.show', ['post'=>$post->id ]) }}">
                                         <button class="btn btn-primary">Show</button>
                                     </a>
                                 </td>

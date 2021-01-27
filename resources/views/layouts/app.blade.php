@@ -34,7 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contacts') }}">Contatti</a>
+                            <a class="nav-link" href="{{ route('contacts') }}">Contacts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('post.index') }}">Posts</a>
                         </li>
                     </ul>
 

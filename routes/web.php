@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+Route::get('post', 'PostController@index')->name('post.index');
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     // inserirò un gruppo di rotte che devono avere queste caratteristiche in comune
     Route::get('/', 'HomeController@index')->name('index');
-    // rotte resource del PostController 
+    // rotte resource del PostController
     Route::resource('post', 'PostController');
 
 });

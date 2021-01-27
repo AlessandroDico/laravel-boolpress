@@ -25,13 +25,9 @@ class PostsTableSeeder extends Seeder
 
         for ($i=0; $i < 20 ; $i++) {
             $newPost = new Post();
-            $newPost->title = $faker->sentence();
-            $newPost->subtitle = $faker->sentence(2);
-            $newPost->author = $faker->name();
-            $newPost->category = $faker->word();
-            $newPost->topic = $faker->word();
-            $newPost->language = $faker->countryCode();
-            $newPost->text = $faker->text(8000);
+            $newPost->title = $faker->sentence(3);
+            $newPost->subtitle = $faker->sentence(3);
+            $newPost->text = $faker->text(2000);
 
             //funzione per trasformare una stringa in uno slug es: hello world => hello-world (il secondo parametro indica il divisore delle parole contenute nel primo parametro)
             $slug = Str::slug($newPost->title, '-');
