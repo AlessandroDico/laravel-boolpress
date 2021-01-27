@@ -15,6 +15,15 @@
                         <input name="subtitle" type="text" class="form-control" placeholder="Enter Subtitle">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Category</label>
+                        <select class="form-control" name="">
+                            <option value="">-- seleziona --</option>
+                             @foreach ($categories as $category)
+                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                             @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
                         <textarea name="text" rows="8" cols="80" placeholder="Enter Content" class="form-control"></textarea>
                     </div>
