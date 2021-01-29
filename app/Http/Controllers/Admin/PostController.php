@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Str;
+use App\Tag;
 use App\Category;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -33,6 +34,7 @@ class PostController extends Controller
     {
         $data = [
             'categories' => Category::all(),
+            'tags' => Tag::all(),
         ];
         // dd($data);
 
@@ -67,6 +69,8 @@ class PostController extends Controller
         $newPost->slug = $slug;
 
         $newPost->save();
+        $newPost->tags()->sync($data['tags']);
+
 
         return redirect()->route('admin.post.index');
     }
