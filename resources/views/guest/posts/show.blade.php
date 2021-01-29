@@ -18,6 +18,14 @@
                         n.d
                     @endif
                 </h4>
+                <h2>Tags:</h2>
+                <h4>
+                    @forelse ($post->tags as $tag)
+                        <p>- {{ $tag->name }}</p>
+                    @empty
+                        n.d
+                    @endforelse
+                </h4>
                 <h2>Post:</h2>
                 <h4>{{ $post->text }}</h4>
             </div>
