@@ -9,7 +9,15 @@
                 <h2>Subtitle:</h2>
                 <h4>- {{ $post->subtitle ? $post->subtitle : '' }}</h4>
                 <h2>Category:</h2>
-                <h4>- {{ $post->category ? $post->category->name : 'n.d' }}</h4>
+                <h4>-
+                    @if ($post->category)
+                        <a href="{{ route('category.show', ['slug'=>$post->category->slug]) }}">
+                            {{ $post->category->name }}
+                        </a>
+                    @else
+                        n.d
+                    @endif
+                </h4>
                 <h2>Post:</h2>
                 <h4>{{ $post->text }}</h4>
             </div>

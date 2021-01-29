@@ -28,7 +28,7 @@ class UpdatePostsTableWithForeign extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             // drop foreign vuole il nome della tabella + nome colonna + foreign separati da underscore
-            $table->dropForeign('posts_category_id_foreign');
+            $table->dropForeign('posts_category_id_foreign'); //oppure $table->dropForeign(['category_id']);
             $table->dropColumn('category_id');
         });
     }
