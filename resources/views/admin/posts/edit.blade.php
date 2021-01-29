@@ -29,6 +29,19 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <p>Select tags</p>
+                        @foreach ($tags as $key => $tag)
+                            {{-- {{ dd($post->tags[$key]->id) }} --}}
+                            <div class="form-check">
+                                <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                {{ $post->tags->contains($tag) ? 'checked=checked' : '' }}>
+                                <label class="form-check-label" for="defaultCheck1">
+                                    {{ $tag->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
                         <textarea name="text" rows="8" cols="80" placeholder="Enter Content" class="form-control">{{ $post->text }}</textarea>
                     </div>

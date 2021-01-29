@@ -27,7 +27,7 @@
                         <p>Select tags</p>
                         @foreach ($tags as $tag)
                             <div class="form-check">
-                                <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="defaultCheck1">
+                                <input name="tags[]" class="form-check-input" type="checkbox" value="{{ $tag->id }}">
                                 <label class="form-check-label" for="defaultCheck1">
                                     {{ $tag->name }}
                                 </label>
