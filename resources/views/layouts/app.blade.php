@@ -71,6 +71,11 @@
                                     </form>
                                 </div>
                             </li>
+                            <li>
+                                <a class="nav-link" href="{{ route('admin.index') }}">
+                                    Dashboard
+                                </a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
