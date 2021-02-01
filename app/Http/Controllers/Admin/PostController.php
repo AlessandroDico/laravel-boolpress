@@ -49,6 +49,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required | max:100 |',
+            'text' => 'required',
+            'subtitle' => 'max:100',
+            'category_id' => 'nullable | exists:categories,id',
+            'tags' => 'exists:tags,id',
+        ]);
+
         $data = $request->all();
 
         $newPost = new Post();
@@ -69,7 +77,9 @@ class PostController extends Controller
         $newPost->slug = $slug;
 
         $newPost->save();
-        $newPost->tags()->sync($data['tags']);
+        if (array_key_exists('tags', $data)) {
+            $newPost->tags()->sync($data['tags']);
+        }
 
 
         return redirect()->route('admin.post.index');
@@ -141,7 +151,9 @@ class PostController extends Controller
         }
         $post->update($data);
 
-        $post->tags()->sync($data['tags']);
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        }
 
 
         return redirect()->route('admin.post.index');
