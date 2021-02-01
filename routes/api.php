@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('posts', 'Api\PostController@index')->name('api.posts');
+Route::post('posts', 'Api\PostController@index')->middleware('api_token_check');
