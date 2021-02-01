@@ -130,6 +130,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => 'required | max:100 |',
+            'text' => 'required',
+            'subtitle' => 'max:100',
+            'category_id' => 'nullable | exists:categories,id',
+            'tags' => 'exists:tags,id',
+        ]);
+        
         $data = $request->all();
         // dd($data);
 

@@ -17,14 +17,14 @@
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Title</label>
-                        <input name="title" type="text" class="form-control"placeholder="Enter Title" value='{{ old('title') }}'>
+                        <input name="title" type="text" class="form-control"placeholder="Enter Title" value='{{ old('title') }}' required maxlength="100">
                         @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Subtitle</label>
-                        <input name="subtitle" type="text" class="form-control" placeholder="Enter Subtitle" value='{{ old('subtitle') }}'>
+                        <input name="subtitle" type="text" class="form-control" placeholder="Enter Subtitle" maxlength="100" value='{{ old('subtitle') }}'>
                         @error('subtitle')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
-                        <textarea name="text" rows="8" cols="80" placeholder="Enter Content" class="form-control">{{ old('text') }}</textarea>
+                        <textarea name="text" rows="8" cols="80" placeholder="Enter Content" class="form-control" required>{{ old('text') }}</textarea>
                         @error('text')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
